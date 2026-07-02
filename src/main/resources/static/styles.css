@@ -8,7 +8,6 @@
   --primary: #5a7bff;
   --primary-dark: #4965e0;
   --border: #2c3358;
-  --radius: 12px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -43,7 +42,6 @@ body {
 .card {
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
   padding: 18px;
   display: flex;
   flex-direction: column;
@@ -63,7 +61,6 @@ input[type="text"], input[type="password"] {
   background: var(--panel-2);
   border: 1px solid var(--border);
   color: var(--text);
-  border-radius: 8px;
   padding: 10px 12px;
   font-size: 14px;
   outline: none;
@@ -74,12 +71,10 @@ input:focus { border-color: var(--primary); }
   background: var(--panel-2);
   color: var(--text);
   border: 1px solid var(--border);
-  border-radius: 8px;
   padding: 10px 16px;
   font-size: 14px;
   cursor: pointer;
 }
-.btn:active { transform: scale(0.98); }
 .btn.primary { background: var(--primary); border-color: var(--primary-dark); color: #fff; }
 .btn.primary:hover { background: var(--primary-dark); }
 
@@ -97,12 +92,12 @@ input:focus { border-color: var(--primary); }
 .summary-line {
   display: flex; justify-content: space-between;
   background: var(--panel-2); border: 1px solid var(--border);
-  border-radius: 8px; padding: 8px 12px; font-size: 14px;
+  padding: 8px 12px; font-size: 14px;
 }
 
 .provider-list { display: flex; flex-direction: column; gap: 6px; }
 .provider-line {
   background: var(--panel-2); border: 1px solid var(--border);
-  border-radius: 8px; padding: 8px 12px; font-size: 13px;
+  padding: 8px 12px; font-size: 13px;
 }
 .provider-line .provider-name { color: var(--muted); text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
