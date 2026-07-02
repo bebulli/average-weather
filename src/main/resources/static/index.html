@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Average Weather</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <h1 class="logo">Average Weather</h1>
+      <a class="link-btn" href="/swagger-ui/index.html">API docs</a>
+    </header>
+
+    <section class="card">
+      <h2>Provider keys</h2>
+      <p class="hint-text">Open-Meteo needs no key. Add your own keys to also pull from OpenWeatherMap
+        and WeatherAPI. Kept in server memory only for this run &mdash; lost on restart.</p>
+      <div class="row">
+        <input id="owmKey" type="password" placeholder="OpenWeatherMap API key" autocomplete="off">
+      </div>
+      <div class="row">
+        <input id="weatherApiKey" type="password" placeholder="WeatherAPI API key" autocomplete="off">
+      </div>
+      <button id="saveKeys" class="btn" type="button">Save keys</button>
+      <p id="keyStatus" class="hint-text"></p>
+    </section>
+
+    <section class="card">
+      <h2>Lookup</h2>
+      <div class="row">
+        <input id="cityInput" type="text" placeholder="City name" autocomplete="off">
+        <button id="searchBtn" class="btn primary" type="button">Get weather</button>
+      </div>
+      <details class="advanced">
+        <summary>Use coordinates instead</summary>
+        <div class="row">
+          <input id="latInput" type="text" placeholder="Latitude" autocomplete="off">
+          <input id="lonInput" type="text" placeholder="Longitude" autocomplete="off">
+          <button id="searchCoordsBtn" class="btn" type="button">Get weather</button>
+        </div>
+      </details>
+      <p id="searchError" class="error"></p>
+    </section>
+
+    <section id="resultCard" class="card hidden">
+      <h2 id="resultLocation"></h2>
+      <p class="muted" id="resultSources"></p>
+      <div class="summary">
+        <div class="summary-line"><span>Temperature</span><strong id="resultTemp"></strong></div>
+        <div class="summary-line"><span>Feels like</span><strong id="resultFeelsLike"></strong></div>
+        <div class="summary-line"><span>Humidity</span><strong id="resultHumidity"></strong></div>
+        <div class="summary-line"><span>Wind</span><strong id="resultWind"></strong></div>
+        <div class="summary-line"><span>Condition</span><strong id="resultCondition"></strong></div>
+      </div>
+      <h2>By provider</h2>
+      <div id="providerList" class="provider-list"></div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
