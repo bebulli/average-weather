@@ -2,7 +2,7 @@ package com.rubinukperaj.weather.provider;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.beans.factory.annotation.Value;
+import com.rubinukperaj.weather.keys.ProviderKeyStore;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
@@ -14,12 +14,11 @@ public class WeatherApiClient implements WeatherProviderClient {
     private static final String BASE_URL = "https://api.weatherapi.com";
 
     private final RestClient restClient;
-    private final String apiKey;
+    private final ProviderKeyStore keyStore;
 
-    public WeatherApiClient(RestClient.Builder builder,
-                             @Value("${weather.weatherapi.api-key:}") String apiKey) {
+    public WeatherApiClient(RestClient.Builder builder, ProviderKeyStore keyStore) {
         this.restClient = builder.baseUrl(BASE_URL).build();
-        this.apiKey = apiKey;
+        this.keyStore = keyStore;
     }
 
     @Override
@@ -29,7 +28,7 @@ public class WeatherApiClient implements WeatherProviderClient {
 
     @Override
     public boolean isConfigured() {
-        return apiKey != null && !apiKey.isBlank();
+        return keyStore.hasWeatherApiKey();
     }
 
     @Override
@@ -38,7 +37,7 @@ public class WeatherApiClient implements WeatherProviderClient {
             throw new ProviderException("weatherapi is not configured");
         }
         String uri = String.format(Locale.ROOT,
-                "/v1/current.json?key=%s&q=%f,%f", apiKey, lat, lon);
+                "/v1/current.json?key=%s&q=%f,%f", keyStore.getWeatherApiKey(), lat, lon);
         try {
             WeatherApiResponse response = restClient.get()
                     .uri(uri)
