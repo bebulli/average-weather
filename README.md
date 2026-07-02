@@ -6,16 +6,17 @@ from the result instead of failing the whole request.
 
 ## Running it
 
-Needs Java 17 and Maven. Open-Meteo works with no key. To also use OpenWeatherMap and WeatherAPI,
-set these before starting:
+Needs Java 17 and Maven.
 
 ```
-export OWM_API_KEY=your_openweathermap_key
-export WEATHERAPI_KEY=your_weatherapi_key
 mvn spring-boot:run
 ```
 
-Without the keys the app still runs fine, it just falls back to Open-Meteo alone.
+Open http://localhost:8080 — there's a small UI to enter OpenWeatherMap/WeatherAPI keys and look
+up a city. Keys entered there live in server memory only for that run and are gone on restart;
+Open-Meteo needs no key at all, so the app is useful with zero setup. If you'd rather not touch the
+UI, the same two keys can be set as env vars before starting instead (`OWM_API_KEY`,
+`WEATHERAPI_KEY`) — either path works, and the UI can override the env values at runtime.
 
 Swagger UI: http://localhost:8080/swagger-ui/index.html
 
