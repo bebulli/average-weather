@@ -4,7 +4,7 @@ Aggregates current weather from three providers (Open-Meteo, OpenWeatherMap, Wea
 returns a single reconciled reading. If a provider is slow, down, or not configured, it's dropped
 from the result instead of failing the whole request.
 
-Personal project. Code is on GitHub, the working copy lives on my own machine.
+Personal project. Uploaded to github.
 
 Live: https://average-weather-production.up.railway.app/
 
@@ -59,8 +59,6 @@ errors, or isn't configured (missing API key) just gets excluded. The response s
 with whatever succeeded, plus `sourcesAttempted`/`sourcesUsed` so you can see how many actually
 responded. The reconciliation step (`AverageReconciliationStrategy`) averages the numeric fields
 across whatever providers returned, and picks the condition text from whichever provider's
-temperature was closest to the average, on the theory that its qualitative read is probably the
-most representative one too. It's swappable: `ReconciliationStrategy` is just an interface, so a
-median-based version or something more elaborate can be dropped in without touching the rest of
-the app. Results are cached in memory per location (rounded to ~100m) for 5 minutes, so repeat
-requests for the same city don't hit all three APIs again.
+temperature was closest to the average. It's swappable: `ReconciliationStrategy` is just an interface, so a
+median-based version or something more elaborate can be dropped. Results are cached in memory per location
+(rounded to ~100m) for 5 minutes, so repeat requests for the same city don't hit all three APIs again.
